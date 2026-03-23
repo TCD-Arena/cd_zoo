@@ -1,0 +1,31 @@
+defaults:
+  - _self_
+  - method: var
+  - ci_test: ParCorr.yaml
+  #- override hydra/launcher: submitit_slurm
+
+# This is generated with scripts in tcd_arena/ensemble_experiments. 
+# Check this repo for reference.
+base_path: "/path/to/rivers_data/release_ensemble_rivers/"
+ds_path: "releease_random_5_tcd_arena_fpcmci.p" # remove
+
+save_name: "causal_rivers_method_predictions/"
+save_path: ${base_path}${save_name}
+verbose: 1
+run_name: ${hydra:job.num}
+restrict_to: 0
+restrict_to_n_steps: 1000
+n_restrict: 500
+remove_trailing_nans: False
+per_sample_metrics: True
+save_full_out: True
+save_predictions: True
+
+# hydra: # Configuration for Multirun on slurm cluster
+#   launcher: 
+#     cpus_per_task: 4
+#     gpus_per_task: 0
+#     mem_gb: 8
+#     timeout_min: 2000
+#     #exclude: gaia3,gaia6,gaia7
+#     partition: workstation,robolab 

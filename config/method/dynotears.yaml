@@ -1,0 +1,6 @@
+name: dynotears
+max_lag: 3
+lambda_w: 0.1
+lambda_a: 0.1
+max_iter: 100
+h_tol: 1e-8

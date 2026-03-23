@@ -1,0 +1,4 @@
+name: pcmci
+max_lag: 3 
+ci_test: ${ci_test}
+

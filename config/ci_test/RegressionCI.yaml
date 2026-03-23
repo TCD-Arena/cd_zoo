@@ -1,0 +1,2 @@
+_target_: tigramite.independence_tests.regressionCI.RegressionCI
+# this needs scipy and sklearn -> pip install scipy scikit-learn

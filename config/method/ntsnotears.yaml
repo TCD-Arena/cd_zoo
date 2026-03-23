@@ -1,0 +1,9 @@
+name: ntsnotears
+max_lag: 3 
+seed: 42
+# 1e-60 but written for yaml
+h_tol: 0.000000000000000000000000000000000000000000000000000000000001 # ???
+# 1e+16
+rho_max: 10000000000000000.0
+lambda1: 0.005
+lambda2: 0.01

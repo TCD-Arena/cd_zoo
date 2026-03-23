@@ -1,0 +1,4 @@
+name: combo
+max_lag: 5 
+reverse_physical: False
+filter_mode: none # min_distance, max_distance, highest_corr

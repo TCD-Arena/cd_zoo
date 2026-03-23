@@ -1,0 +1,3 @@
+name: crosscorr
+max_lag: 5
+filter_mode: none # highest_corr

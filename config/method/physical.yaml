@@ -1,0 +1,3 @@
+name: physical
+reverse_physical: False
+filter_mode: none # min_distance, max_distance

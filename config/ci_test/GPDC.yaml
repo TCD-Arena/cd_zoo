@@ -1,0 +1,5 @@
+_target_: tigramite.independence_tests.gpdc.GPDC
+# this needs dcor -> pip install dcor
+# This will run a million years.
+null_dist_filename: null
+gp_params: null

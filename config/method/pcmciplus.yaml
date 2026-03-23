@@ -1,0 +1,6 @@
+name: pcmciplus
+max_lag: 3
+ci_test: ${ci_test}
+
+contemp_collider_rule: "majority" #"contemporary", conservative, "majority"
+reset_lagged_links: False

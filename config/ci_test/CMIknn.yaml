@@ -1,0 +1,6 @@
+_target_: tigramite.independence_tests.cmiknn.CMIknn
+# ^this needs numba -> pip install numba
+knn: 0.01
+shuffle_neighbors: 2
+significance: shuffle_test
+transform: ranks

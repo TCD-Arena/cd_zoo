@@ -1,0 +1,4 @@
+name: varlingam
+max_lag: 3
+criterion: None #{‘aic’, ‘fpe’, ‘hqic’, ‘bic’, None} # this disables max lag as the best lag is searched for
+prune: True

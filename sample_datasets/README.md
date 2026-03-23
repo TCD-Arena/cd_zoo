@@ -1,0 +1,1 @@
+The linear samples are generated via "SYNTH_data_gen" and represent a randomly sampled linear VAR process in both format cases.

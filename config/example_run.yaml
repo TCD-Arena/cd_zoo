@@ -1,0 +1,20 @@
+defaults:
+  - _self_
+  - method: var
+  - ci_test: ParCorr.yaml
+  - data_preprocess: basic.yaml
+
+
+loading_mode: "single"
+index_col: 0
+dt_preprocess: True
+
+data_path: "sample_datasets/split_format/"
+map_to_summary_graph: "max"
+
+only_single_sample_index : -1
+
+verbose: 1
+per_sample_metrics: True
+
+
