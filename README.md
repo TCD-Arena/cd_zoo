@@ -344,11 +344,11 @@ This project is part of the TCD-Arena release. Please refer to the main reposito
 ## Cross-correlation-Peak
 Naive strategy that directs edges by looking for the lag that maximizes the cross-correlation between two time series:
 
-$$  \underset{k \in {-k, \dots, k}}{\operatorname{argmax}}  \hat{\rho}{X,Y}(k) = \frac{\frac{1}{n}\sum{t=1}^{n-|k|} (X_t - \bar{X})(Y_{t+k} - \bar{Y})}{s_X s_Y} ] $$
+$$  \underset{k \in {-k, \dots, k}}{\text{argmax}}  \hat{\rho}{X,Y}(k) = \frac{\frac{1}{n}\sum{t=1}^{n-|k|} (X_t - \bar{X})(Y_{t+k} - \bar{Y})}{s_X s_Y} ] $$
 
 if $k$ is positive $X \rightarrow Y$ is infered. If k is negative $X \leftarrow Y$ is inferred.
 
-Naive strategy. Has no garantuees to work.
+Naive strategy. Has no guarantees to work.
 
 
 **HPS**: 
