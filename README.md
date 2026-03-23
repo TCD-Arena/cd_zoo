@@ -1,5 +1,5 @@
 # Causal Discovery Zoo
-##(Unifying Causal Discovery algorithms)
+## (Unifying Causal Discovery algorithms)
 
 A comprehensive benchmarking framework for time series causal discovery methods with unified interfaces and standardized evaluation protocols.
 
