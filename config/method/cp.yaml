@@ -1,5 +1,5 @@
 name: cp
 batch_size: 16  # only relevant for very long ts
 architecture: transformer
-weight_path: methods/cp_models/pretrained_weights/
+weight_path: cd_zoo/methods/cp_models/pretrained_weights/
 batch_aggregation: mean # only relevant if ts is longer than 600 (training ts length)
