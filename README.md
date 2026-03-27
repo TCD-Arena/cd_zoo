@@ -41,7 +41,7 @@ This repository provides a unified framework for evaluating causal discovery alg
 
 | Method | Type | Deep Learning | Instantaneous | Window Graph | Summary Graph | Publication |
 |:-------|:-----|:--------------|:--------------|:-------------|:-------------|:------------|
-| **Direct Cross-Correlation** | Heuristic | ❌ | ❌ | ✅ | ✅ | Threshold-based |
+| **Direct Cross-Correlation** | Heuristic | ❌ | ❌ | ✅ | ✅ | Simple Correlation |
 | **VAR** | Granger | ❌ | ❌ | ✅ | ✅ | [Stock & Watson (2001)](https://www.princeton.edu/~mwatson/papers/Stock_Watson_JEP_2001.pdf) |
 | **VAR-LINGAM** | Granger + Noise | ❌ | ✅ | ✅ | ✅ | [Hyvärinen et al. (2010)](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1468-0084.2012.00710) |
 | **DYNOTEARS** | Score | ❌ | ✅ | ✅ | ✅ | [Pamfil et al. (2020)](https://arxiv.org/abs/2002.00498) |
