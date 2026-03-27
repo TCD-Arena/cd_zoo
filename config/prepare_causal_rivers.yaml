@@ -1,0 +1,13 @@
+defaults:
+  - _self_
+  - method: var
+  - data_preprocess: causal_rivers
+
+label_path: "causalrivers/datasets/random_5/east.p"
+data_path: "causalrivers/product/rivers_ts_east_germany.csv"
+save_path: "causal_rivers_prepared_data/"
+save_full_out: True
+
+
+restrict_to: -1
+dt_preprocess: True

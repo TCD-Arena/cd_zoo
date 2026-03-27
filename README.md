@@ -37,25 +37,41 @@ This repository provides a unified framework for evaluating causal discovery alg
 - ✅ Easy integration of new methods via standardized interface
 - ✅ Compatible with TCD-Arena benchmarking framework
 
+
+### If you run this repo as a drop in replacement in TCD arena run: 
+
+```bash
+./cd_zoo/scripts/run_all_methods_on_data_release.sh --method varlingam # Beware this runs ALL datasets. 
+# You can restrict the data by either
+./cd_zoo/scripts/run_all_methods_on_data_release.sh --method varlingam string_that_should_be_contained_in_violation_name (e.g. obs)
+#Or
+./cd_zoo/scripts/run_all_methods_on_data_release.sh --method varlingam string_that_should_be_contained_in_violation_name (e.g. obs) maximum_number_of_datasets
+```
+
+Additional functionality can be found below.
+
+
 ## 🎯 Current Causal Discovery Methods Overview
 
-| Method | Type | Deep Learning | Instantaneous | Window Graph | Summary Graph | Publication |
-|:-------|:-----|:--------------|:--------------|:-------------|:-------------|:------------|
-| **Direct Cross-Correlation** | Heuristic | ❌ | ❌ | ✅ | ✅ | Simple Correlation |
-| **VAR** | Granger | ❌ | ❌ | ✅ | ✅ | [Stock & Watson (2001)](https://www.princeton.edu/~mwatson/papers/Stock_Watson_JEP_2001.pdf) |
-| **VAR-LINGAM** | Granger + Noise | ❌ | ✅ | ✅ | ✅ | [Hyvärinen et al. (2010)](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1468-0084.2012.00710) |
-| **DYNOTEARS** | Score | ❌ | ✅ | ✅ | ✅ | [Pamfil et al. (2020)](https://arxiv.org/abs/2002.00498) |
-| **PCMCI** | Constraint | ❌ | ❌ | ✅ | ✅ | [Runge et al. (2019)](https://www.science.org/doi/10.1126/sciadv.aau4996) |
-| **PCMCI+** | Constraint | ❌ | ✅ | ✅ | ✅ | [Runge (2020)](https://arxiv.org/abs/2003.03685) |
-| **FPCMCI**  | Constraint | ❌ | ✅  | ✅ | ✅ | [Castri et al.(2023)](https://proceedings.mlr.press/v213/castri23a.html) |
-| **Causal Pretraining** | Ammortized | ✅ | ❌ | ✅ | ✅ | [Stein et al. (2024)](https://arxiv.org/abs/2402.09305) |
-| **NTS-NOTEARS** | Score | ✅ | ✅ | ✅ | ✅ | [Sun et al. (2021)](https://arxiv.org/abs/2109.04286) |
-| **SVAR-RFCI** | Constraint | ❌ | ✅ | ✅ | ✅ | [Colombo et al. (2012)](https://www.jmlr.org/papers/v13/colombo12a.html) |
-| **Cross-Correlation Peak** | Heuristic | ❌ | ❌ | ❌ | ✅ | [Stein et al. (2025)](https://arxiv.org/abs/2503.17452) |
-| **Physical Principle** | Heuristic | ❌ | ❌ | ❌ | ✅ |  [Stein et al. (2025)](https://arxiv.org/abs/2503.17452) |
-| **CrossCorr + Physical** | Heuristic | ❌ | ❌ | ❌ | ✅ |  [Stein et al. (2025)](https://arxiv.org/abs/2503.17452) |
-| **CDMI** | Granger | ✅ | ❌ | ❌ | ✅ | [Ahmad et al. (2022)](https://arxiv.org/abs/2207.04055) |
-| **SVAR-FCI** | Constraint | ❌ | ✅ | ✅ | ✅ | [Malinsky & Spirtes (2018)](http://proceedings.mlr.press/v92/malinsky18a) |
+| Method | Script Method Name | Type | Deep Learning | Instantaneous | Window Graph | Summary Graph | Publication |
+|:-------|:-------------------|:-----|:--------------|:--------------|:-------------|:-------------|:------------|
+| **Direct Cross-Correlation** | direct_crosscorr | Heuristic | ❌ | ❌ | ✅ | ✅ | Simple Correlation |
+| **VAR** | var | Granger | ❌ | ❌ | ✅ | ✅ | [Stock & Watson (2001)](https://www.princeton.edu/~mwatson/papers/Stock_Watson_JEP_2001.pdf) |
+| **VAR-LINGAM** | varlingam | Granger + Noise | ❌ | ✅ | ✅ | ✅ | [Hyvärinen et al. (2010)](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1468-0084.2012.00710) |
+| **DYNOTEARS** | dynotears | Score | ❌ | ✅ | ✅ | ✅ | [Pamfil et al. (2020)](https://arxiv.org/abs/2002.00498) |
+| **PCMCI** | pcmci | Constraint | ❌ | ❌ | ✅ | ✅ | [Runge et al. (2019)](https://www.science.org/doi/10.1126/sciadv.aau4996) |
+| **PCMCI+** | pcmciplus | Constraint | ❌ | ✅ | ✅ | ✅ | [Runge (2020)](https://arxiv.org/abs/2003.03685) |
+| **FPCMCI**  | fpcmci | Constraint | ❌ | ✅  | ✅ | ✅ | [Castri et al.(2023)](https://proceedings.mlr.press/v213/castri23a.html) |
+| **Causal Pretraining** | cp | Ammortized | ✅ | ❌ | ✅ | ✅ | [Stein et al. (2024)](https://arxiv.org/abs/2402.09305) |
+| **NTS-NOTEARS** | ntsnotears | Score | ✅ | ✅ | ✅ | ✅ | [Sun et al. (2021)](https://arxiv.org/abs/2109.04286) |
+| **SVAR-RFCI** | svarrfci | Constraint | ❌ | ✅ | ✅ | ✅ | [Colombo et al. (2012)](https://www.jmlr.org/papers/v13/colombo12a.html) |
+| **Cross-Correlation Peak** | crosscorr_peak | Heuristic | ❌ | ❌ | ❌ | ✅ | [Stein et al. (2025)](https://arxiv.org/abs/2503.17452) |
+| **Physical Principle** | physical | Heuristic | ❌ | ❌ | ❌ | ✅ |  [Stein et al. (2025)](https://arxiv.org/abs/2503.17452) |
+| **CrossCorr + Physical** | crosscorr_physical | Heuristic | ❌ | ❌ | ❌ | ✅ |  [Stein et al. (2025)](https://arxiv.org/abs/2503.17452) |
+| **CDMI** | cdmi | Granger | ✅ | ❌ | ❌ | ✅ | [Ahmad et al. (2022)](https://arxiv.org/abs/2207.04055) |
+| **SVAR-FCI** | svarfci | Constraint | ❌ | ✅ | ✅ | ✅ | [Malinsky & Spirtes (2018)](http://proceedings.mlr.press/v92/malinsky18a) |
+
+
 
 
 ## 📁 Repository Structure
@@ -224,6 +240,15 @@ python benchmark.py \
 
 #### 4. Batch Processing with Scripts
 ```bash
+
+# If you run this as a drop in replacement in TCD arena run: 
+./cd_zoo/scripts/run_all_methods_on_data_release.sh --method varlingam # Beware this runs ALL datasets. 
+# You can restrict the data by either
+./cd_zoo/scripts/run_all_methods_on_data_release.sh --method varlingam string_that_should_be_contained_in_violation_name (e.g. obs)
+#Or
+./cd_zoo/scripts/run_all_methods_on_data_release.sh --method varlingam string_that_should_be_contained_in_violation_name (e.g. obs) maximum_number_of_datasets
+
+
 # Run all methods on a dataset
 ./scripts/execute_all_methods.sh /path/to/dataset
 
@@ -269,6 +294,38 @@ The benchmarking framework follows a systematic process:
 - Outputs runtime statistics for performance profiling
 - Compatible with downstream analysis and visualization tools
 - Results organized by timestamp and experiment configuration
+
+
+### 6. CausalRivers Integration
+
+The suite includes complete integration with the CausalRivers benchmark:
+
+```bash
+
+# Clone causalrivers
+cd ensembling_experiments/causalrivers
+
+# Install CausalRivers environment
+./install.sh
+conda activate causalrivers
+
+# Generate benchmark datasets
+cd causalrivers
+python 0_generate_datasets.py
+
+# Transfer samples to TCD-Format by running: 
+cd ..
+python prepare_causal_rivers.py
+
+# Execute methods: 
+python run_methods_on_causal_rivery.py
+
+
+# Run benchmarking
+python benchmark.py method=var \
+    data_path=product/rivers_ts_east_germany.csv \
+    method.max_lag=5
+```
 
 
 ---

@@ -16,7 +16,7 @@ methods=(
 )
 
 
- cmd4=" method.max_lag=3 restrict_to=0 n_restrict=250" 
+ cmd4=" method.max_lag=3" 
 
 for method in "${methods[@]}"; do
         echo  "$cmd$method$cmd4" 

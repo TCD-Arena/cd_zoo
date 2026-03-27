@@ -37,7 +37,6 @@ if [[ ${#data_paths[@]} -eq 0 ]]; then
     exit 1
 fi
 
-cd ..
 
 cmd="python benchmark.py -m method="
 cmd2="ds_name="

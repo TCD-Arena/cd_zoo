@@ -13,6 +13,9 @@ from tools.tools import benchmarking
 from tools.method_loader import load_cd_method
 
 
+# We use this script to integrate CausalRivers into our evaluation. 
+# In order for this to work, you need to have clone and install CausalRivers and run prepare_causal_rivers.py to prepare the data.
+
 # Example script to benchmark causal discovery methods.
 @hydra.main(version_base=None, config_path="config", config_name="predict_causal_rivers.yaml")
 def main(cfg: DictConfig):
