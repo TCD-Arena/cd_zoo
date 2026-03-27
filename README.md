@@ -1,5 +1,6 @@
 # Causal Discovery Zoo
-A comprehensive benchmarking framework for time series causal discovery methods with unified interfaces and standardized evaluation protocols.
+This is a collection of Causal Discovery methods for time-series it is part of the TCD-Arena package.
+While this repo can be used in a standalone manner, if you want to work in the TCD-arena framework, please refer to the main repository.
 
 ---
 
@@ -18,7 +19,6 @@ A comprehensive benchmarking framework for time series causal discovery methods 
 
 ---
 
-
 ## 📋 Overview
 
 This repository provides a unified framework for evaluating causal discovery algorithms on time series data. It includes:
@@ -36,6 +36,27 @@ This repository provides a unified framework for evaluating causal discovery alg
 - ✅ Per-sample and aggregate evaluation metrics
 - ✅ Easy integration of new methods via standardized interface
 - ✅ Compatible with TCD-Arena benchmarking framework
+
+## 🎯 Current Causal Discovery Methods Overview
+
+| Method | Type | Deep Learning | Instantaneous | Window Graph | Summary Graph | Publication |
+|:-------|:-----|:--------------|:--------------|:-------------|:-------------|:------------|
+| **Direct Cross-Correlation** | Heuristic | ❌ | ❌ | ✅ | ✅ | Threshold-based |
+| **VAR** | Granger | ❌ | ❌ | ✅ | ✅ | [Stock & Watson (2001)](https://www.princeton.edu/~mwatson/papers/Stock_Watson_JEP_2001.pdf) |
+| **VAR-LINGAM** | Granger + Noise | ❌ | ✅ | ✅ | ✅ | [Hyvärinen et al. (2010)](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1468-0084.2012.00710) |
+| **DYNOTEARS** | Score | ❌ | ✅ | ✅ | ✅ | [Pamfil et al. (2020)](https://arxiv.org/abs/2002.00498) |
+| **PCMCI** | Constraint | ❌ | ❌ | ✅ | ✅ | [Runge et al. (2019)](https://www.science.org/doi/10.1126/sciadv.aau4996) |
+| **PCMCI+** | Constraint | ❌ | ✅ | ✅ | ✅ | [Runge (2020)](https://arxiv.org/abs/2003.03685) |
+| **FPCMCI**  | Constraint | ❌ | ✅  | ✅ | ✅ | [Castri et al.(2023)](https://proceedings.mlr.press/v213/castri23a.html) |
+| **Causal Pretraining** | Ammortized | ✅ | ❌ | ✅ | ✅ | [Stein et al. (2024)](https://arxiv.org/abs/2402.09305) |
+| **NTS-NOTEARS** | Score | ✅ | ✅ | ✅ | ✅ | [Sun et al. (2021)](https://arxiv.org/abs/2109.04286) |
+| **SVAR-RFCI** | Constraint | ❌ | ✅ | ✅ | ✅ | [Colombo et al. (2012)](https://www.jmlr.org/papers/v13/colombo12a.html) |
+| **Cross-Correlation Peak** | Heuristic | ❌ | ❌ | ❌ | ✅ | [Stein et al. (2025)](https://arxiv.org/abs/2503.17452) |
+| **Physical Principle** | Heuristic | ❌ | ❌ | ❌ | ✅ |  [Stein et al. (2025)](https://arxiv.org/abs/2503.17452) |
+| **CrossCorr + Physical** | Heuristic | ❌ | ❌ | ❌ | ✅ |  [Stein et al. (2025)](https://arxiv.org/abs/2503.17452) |
+| **CDMI** | Granger | ✅ | ❌ | ❌ | ✅ | [Ahmad et al. (2022)](https://arxiv.org/abs/2207.04055) |
+| **SVAR-FCI** | Constraint | ❌ | ✅ | ✅ | ✅ | [Malinsky & Spirtes (2018)](http://proceedings.mlr.press/v92/malinsky18a) |
+
 
 ## 📁 Repository Structure
 
@@ -82,58 +103,26 @@ full_cd_zoo/
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd full_cd_zoo
+   git clone https://github.com/TCD-Arena/cd_zoo
+   cd cd_zoo
    ```
 
 2. **Install the main environment**
    ```bash
+   
    conda env create -f envs/cd_zoo_basic.yml
    conda activate cd_zoo_basic
    ```
 
-3. **Install the torch environment**
+3. **Install the torch environment (optional)**
    ```bash
    conda env create -f envs/cd_zoo_torch.yml
    conda activate cd_zoo_torch
    ```
-
-For FPCMCI please follow the instructions in and install on top of the base environment: https://github.com/lcastri/causalflow
-For CDMI we have a custom environment in envs/cd_zoo_cdmi.yaml
-   
-
 ### Method-Specific Environments
-
-Some methods require specialized environments:
-
-- **PCMCI/LPCMCI/FPCMCI**: `conda env create -f envs/pcmci.yml`
-- **CDMI**: `conda env create -f envs/cdmi.yml`
-- **Deep Learning Methods** (TCDF, NTS-NOTEARS, Causal Pretraining): `conda env create -f envs/deep.yml`
-- **DYNOTEARS**: `conda env create -f envs/dyno.yml`
-
-
-
-## 🎯 Current Causal Discovery Methods Overview
-
-| Method | Type | Deep Learning | Instantaneous | Window Graph | Summary Graph | Publication |
-|:-------|:-----|:--------------|:--------------|:-------------|:-------------|:------------|
-| **Direct Cross-Correlation** | Heuristic | ❌ | ❌ | ✅ | ✅ | Threshold-based |
-| **VAR** | Granger | ❌ | ❌ | ✅ | ✅ | [Stock & Watson (2001)](https://www.princeton.edu/~mwatson/papers/Stock_Watson_JEP_2001.pdf) |
-| **VAR-LINGAM** | Granger + Noise | ❌ | ✅ | ✅ | ✅ | [Hyvärinen et al. (2010)](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1468-0084.2012.00710) |
-| **DYNOTEARS** | Score | ❌ | ✅ | ✅ | ✅ | [Pamfil et al. (2020)](https://arxiv.org/abs/2002.00498) |
-| **PCMCI** | Constraint | ❌ | ❌ | ✅ | ✅ | [Runge et al. (2019)](https://www.science.org/doi/10.1126/sciadv.aau4996) |
-| **PCMCI+** | Constraint | ❌ | ✅ | ✅ | ✅ | [Runge (2020)](https://arxiv.org/abs/2003.03685) |
-| **FPCMCI**  | Constraint | ❌ | ✅  | ✅ | ✅ | [Castri et al.(2023)](https://proceedings.mlr.press/v213/castri23a.html) |
-| **Causal Pretraining** | Ammortized | ✅ | ❌ | ✅ | ✅ | [Stein et al. (2024)](https://arxiv.org/abs/2402.09305) |
-| **NTS-NOTEARS** | Score | ✅ | ✅ | ✅ | ✅ | [Sun et al. (2021)](https://arxiv.org/abs/2109.04286) |
-| **SVAR-RFCI** | Constraint | ❌ | ✅ | ✅ | ✅ | [Colombo et al. (2012)](https://www.jmlr.org/papers/v13/colombo12a.html) |
-| **Cross-Correlation Peak** | Heuristic | ❌ | ❌ | ❌ | ✅ | [Stein et al. (2025)](https://arxiv.org/abs/2503.17452) |
-| **Physical Principle** | Heuristic | ❌ | ❌ | ❌ | ✅ |  [Stein et al. (2025)](https://arxiv.org/abs/2503.17452) |
-| **CrossCorr + Physical** | Heuristic | ❌ | ❌ | ❌ | ✅ |  [Stein et al. (2025)](https://arxiv.org/abs/2503.17452) |
-| **CDMI** | Granger | ✅ | ❌ | ❌ | ✅ | [Ahmad et al. (2022)](https://arxiv.org/abs/2207.04055) |
-| **SVAR-FCI** | Constraint | ❌ | ✅ | ✅ | ✅ | [Malinsky & Spirtes (2018)](http://proceedings.mlr.press/v92/malinsky18a) |
-
-
+For FPCMCI, please follow the instructions and install on top of the base environment: https://github.com/lcastri/causalflow
+For CDMI, we have a custom environment in envs/cd_zoo_cdmi.yaml
+   
 
 ## 📊 Supported Data Formats
 
@@ -210,7 +199,7 @@ tcd_arena_format/
 ```bash
 jupyter notebook simple_usage.ipynb
 ```
-Explore basic usage with guided examples in the notebook.
+You can explore basic usage with guided examples in the notebook.
 
 #### 2. Simple Example Run
 ```bash
@@ -278,7 +267,7 @@ The benchmarking framework follows a systematic process:
 - Supports both per-sample and aggregate metrics
 
 ### 5. **Results Export & Analysis**
-- Saves predictions, ground truth, and metrics in structured format
+- Saves predictions, ground truth, and metrics in a structured format
 - Outputs runtime statistics for performance profiling
 - Compatible with downstream analysis and visualization tools
 - Results organized by timestamp and experiment configuration
@@ -287,31 +276,31 @@ The benchmarking framework follows a systematic process:
 ---
 
 
-### 🔧 Development Status
-- Full Release 1.0
-- We are commited to adding more methods in the same matter in the future. 
-- Want to be included in the Cd zoo? Let us know!
 
 
 ## 🤝 Contributing
 
 We welcome contributions to the Causal Discovery Zoo! Here's how you can help:
 
-### Adding a New Method
+### 🔧 Development Status
+- Full Release 1.0
+- We are committed to adding more methods in the same manner in the future. 
+
+### 🔧 Adding a New Method
 
 1. Create method implementation in `methods/your_method.py`
 2. Implement the standard interface: `def run_your_method(data_sample, cfg)`
-3. Add configuration file in `config/method/your_method.yaml`
-4. Update method loader in `tools/method_loader.py`
-5. Add to test script and validate good performance on the linear systems
+3. Add a configuration file in `config/method/your_method.yaml`
+4. Update method loader in `tools/method_loader.py.`
+5. Add to the test script and validate good performance on the linear systems
 6. Extend the documentation
-
-
 
 
 ## 📄 Citation
 
+When you use specific methods, please also cite the original papers listed in the methods table above.
 If you use the Causal Discovery Zoo in your research, please cite the TCD-Arena paper:
+
 
 ```bibtex
 @inproceedings{
@@ -323,8 +312,6 @@ year={2026},
 url={https://openreview.net/forum?id=MtdrOCLAGY}
 }
 ```
-
-When using specific methods, please also cite the original papers listed in the methods table above.
 
 ---
 
