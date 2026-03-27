@@ -6,9 +6,9 @@ While this repo can be used in a standalone manner, if you want to work in the T
 
 ## 📑 Table of Contents
 - [Overview](#-overview)
-- [Repository Structure](#-repository-structure)
-- [Installation & Setup](#-installation--setup)
 - [Methods Overview](#-causal-discovery-methods-overview)
+- - [Repository Structure](#-repository-structure)
+- [Installation & Setup](#-installation--setup)
 - [Supported Data Formats](#-supported-data-formats)
 - [Quick Start](#-quick-start)
 - [General Workflow](#-general-workflow)
@@ -274,9 +274,6 @@ The benchmarking framework follows a systematic process:
 
 
 ---
-
-
-
 
 ## 🤝 Contributing
 
