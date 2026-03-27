@@ -93,8 +93,6 @@ full_cd_zoo/
 │   ├── execute_all_for_causal_rivers.sh # Run methods on CausalRivers dataset
 │   ├── execute_method_on_all_folders.sh # Apply single method across folders
 │   └── execute_nl_ci_tests.sh        # Test nonlinear CI tests
-├── causalflow/                       # CausalFlow library (integrated)
-└── IDTxl/                            # IDTxl library for transfer entropy
 ```
 
 ## 🔧 Installation & Setup
