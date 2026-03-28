@@ -303,7 +303,7 @@ The suite includes complete integration with the CausalRivers benchmark:
 ```bash
 
 # Clone causalrivers
-cd ensembling_experiments/causalrivers
+git clone https://github.com/CausalRivers/causalrivers
 
 # Install CausalRivers environment
 ./install.sh
