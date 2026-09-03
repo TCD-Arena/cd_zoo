@@ -1,0 +1,7 @@
+name: ocse
+max_lag: 3
+method: standard
+information: gaussian
+n_shuffles: 50
+alpha_forward: 0.05
+alpha_backward: 0.05

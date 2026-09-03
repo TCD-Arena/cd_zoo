@@ -1,0 +1,20 @@
+defaults:
+  - _self_
+  - method: var
+  - ci_test: ParCorr.yaml
+
+# `causal-benchmarks` registry entry name. List candidates with:
+#   python -c "import causal_benchmarks as cb; print(cb.list_datasets()[['name','domain','ground_truth']].to_string())"
+# Prefer time-series entries with a ground truth (cd_zoo methods are TS methods).
+dataset: "var_sl"
+
+# Restrict each series to its first N timesteps (-1 = use full length).
+restrict_to_n_steps: -1
+
+save_name: "causal_benchmarks_results/"
+save_path: ${save_name}
+run_name: ${hydra:job.num}
+verbose: 1
+per_sample_metrics: True
+save_full_out: True
+save_predictions: False

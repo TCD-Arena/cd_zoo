@@ -1,0 +1,13 @@
+n_vars: 5
+n_samples: 50
+n_obs: 1000
+edge_prob: 0.3
+weight_range:
+- 0.5
+- 1.0
+seed: 0
+noise_type: nongaussian
+model: linear SCM  x = (I - B)^{-1} e
+orientation: '[effect, cause]  (Y[e,c] = weight of edge c->e)'
+note: i.i.d. samples; NO temporal ordering. For i.i.d. methods (lingam, pc, ges, ica_lingam,
+  dagma, avici, cdfm, arrow, tabcausal).

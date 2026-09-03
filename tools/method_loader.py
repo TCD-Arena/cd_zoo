@@ -31,6 +31,22 @@ def load_cd_method(method_name: str):
         "crosscorr": ("methods.baseline_methods", "cross_correlation_for_causal_discovery"),
         "cdmi": ("methods.cdmi", "run_cdmi"),
         "svarfci": ("methods.svarfci", "run_svarfci"),
+        # i.i.d. (non-time-series) methods
+        "lingam": ("methods.lingam", "run_lingam"),
+        "pc": ("methods.pc", "run_pc"),
+        "avici": ("methods.avici", "run_avici"),
+        "cdfm": ("methods.cdfm", "run_cdfm"),
+        "arrow": ("methods.arrow", "run_arrow"),
+        "tabcausal": ("methods.tabcausal", "run_tabcausal"),
+        "ges": ("methods.ges", "run_ges"),
+        "ica_lingam": ("methods.ica_lingam", "run_ica_lingam"),
+        "dagma": ("methods.dagma", "run_dagma"),
+        "lpcmci": ("methods.lpcmci", "run_lpcmci"),
+        "varma_lingam": ("methods.varma_lingam", "run_varma_lingam"),
+        "ocse": ("methods.ocse", "run_ocse"),
+        # amortized temporal structure discovery (pretrained)
+        "lcm": ("methods.lcm", "run_lcm"),
+        "sdci": ("methods.sdci", "run_sdci"),
 
     }
     

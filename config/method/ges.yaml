@@ -1,0 +1,3 @@
+name: ges
+score_func: local_score_BIC
+maxP: null

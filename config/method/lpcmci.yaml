@@ -1,0 +1,4 @@
+name: lpcmci
+max_lag: 3
+pc_alpha: 0.05
+ci_test: ${ci_test}

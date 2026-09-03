@@ -1,0 +1,4 @@
+name: varma_lingam
+order: [3, 1]
+criterion: None
+prune: True

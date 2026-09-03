@@ -1,0 +1,4 @@
+name: dagma
+loss_type: l2
+lambda1: 0.02
+w_threshold: 0.0
