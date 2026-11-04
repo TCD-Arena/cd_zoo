@@ -1,0 +1,22 @@
+# Hydra default output dir
+outputs/
+multirun/
+
+# Adapter run results (regenerable)
+causal_benchmarks_results/
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Auto-downloaded pretrained weights (not bundled; fetched on first use)
+methods/lcm_weights/
+methods/sdci_weights/
+
+# Hugging Face model cache (e.g. AVICI), fetched on first use
+cache/
+
+# Nested download artifact (duplicate weight folders created when a wrapper
+# resolves its cache_dir relative to the parent directory)
+cd_zoo/
