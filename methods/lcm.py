@@ -74,9 +74,10 @@ def run_lcm(data_sample, cfg):
     A pretrained transformer ingests a multivariate time series and outputs a
     lagged adjacency tensor ``pred[effect, cause, lag]`` of per-edge
     confidence scores in a single forward pass.  The released checkpoints
-    support up to 12 variables, 3 lags and 500 timesteps; shorter / narrower
-    inputs are padded with low-variance noise (following the official
-    ``illustrative_example`` notebook).
+    support up to 12 variables, 3 lags and 500 timesteps.  Narrower inputs
+    are padded with low-variance noise variables; shorter series are used
+    as they are, and longer ones are averaged over 500-step windows
+    (following the official evaluation code in ``lcm_pytorch``).
 
     Output orientation is ``[effect, cause, lag]`` which matches cd_zoo's
     convention directly (no transpose).  The model emits lags in *descending*
@@ -111,33 +112,39 @@ def run_lcm(data_sample, cfg):
         model = _get_model(cfg)
         M = model.model
 
-        # Normalisation to [0, 1] (as in the official quick-start).
+        # Normalisation to [0, 1] (as in the official evaluation code,
+        # lcm_pytorch.utils.misc_utils).
         X = (X - X.min()) / (X.max() - X.min() + 1e-8)
         Xt = torch.from_numpy(X)
 
-        # Pad timesteps up to the training length with low-variance noise.
-        if Xt.shape[0] < _MAX_SEQ_LEN:
-            pad = torch.normal(0, 0.01, (_MAX_SEQ_LEN - Xt.shape[0], Xt.shape[1]))
-            Xt = torch.cat([Xt, pad], dim=0)
-        # Truncate over-long series (model cannot attend beyond 500 steps).
-        elif Xt.shape[0] > _MAX_SEQ_LEN:
-            Xt = Xt[:_MAX_SEQ_LEN]
+        # The official evaluation does NOT pad the time axis: shorter series
+        # are fed as they are (padding them with noise to 500 steps reduced
+        # AUROC from .64 to .49 on 250-step series). Series longer than the
+        # 500-step context are split into consecutive 500-step windows whose
+        # predictions are averaged (cfg.window_average, default True); with
+        # window_average=False they are truncated to the first 500 steps, as
+        # in the official code.
+        if Xt.shape[0] > _MAX_SEQ_LEN and getattr(cfg, "window_average", True):
+            n_win = Xt.shape[0] // _MAX_SEQ_LEN
+            windows = [Xt[k * _MAX_SEQ_LEN:(k + 1) * _MAX_SEQ_LEN] for k in range(n_win)]
+        else:
+            windows = [Xt[:_MAX_SEQ_LEN]]
 
-        # Pad variables up to the model's V_max.
-        var_dif = _MAX_VAR - Xt.shape[1]
-        if var_dif > 0:
-            Xt = torch.cat(
-                [Xt, torch.normal(0, 0.01, (Xt.shape[0], var_dif))], dim=1
-            )
+        preds = []
+        for W in windows:
+            # Pad variables up to the model's V_max with low-variance noise.
+            var_dif = _MAX_VAR - W.shape[1]
+            if var_dif > 0:
+                W = torch.cat([W, torch.normal(0, 0.01, (W.shape[0], var_dif))], dim=1)
+            with torch.no_grad():
+                corr = lagged_batch_crosscorrelation(W.unsqueeze(0), _MAX_LAG)
+                corr = torch.nan_to_num(corr, nan=0.0)
+                preds.append(torch.sigmoid(M((W.unsqueeze(0), corr))).squeeze(0).numpy())
+        pred = np.mean(preds, axis=0)
 
-        with torch.no_grad():
-            corr = lagged_batch_crosscorrelation(Xt.unsqueeze(0), _MAX_LAG)
-            corr = torch.nan_to_num(corr, nan=0.0)
-            pred = torch.sigmoid(M((Xt.unsqueeze(0), corr))).squeeze(0).numpy()
-
-        # Remove self-loops per lag (the diagonal of each lag slice).
-        for l in range(pred.shape[-1]):
-            pred[l, l] = 0.0
+        # Remove self-loops: the diagonal of every lag slice.
+        idx = np.arange(pred.shape[0])
+        pred[idx, idx, :] = 0.0
 
         # Keep only the real (top-left) variables, discarding padding columns.
         pred = pred[:n_vars, :n_vars, :]

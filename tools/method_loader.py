@@ -47,6 +47,8 @@ def load_cd_method(method_name: str):
         # amortized temporal structure discovery (pretrained)
         "lcm": ("methods.lcm", "run_lcm"),
         "sdci": ("methods.sdci", "run_sdci"),
+        # any i.i.d. method on a time series via time-unrolling (method.base=<iid method>)
+        "unrolled": ("methods.unrolled", "run_unrolled"),
 
     }
     

@@ -1,0 +1,6 @@
+name: unrolled
+base: avici          # any i.i.d. method: avici, arrow, cdfm, tabcausal, lingam, ica_lingam, pc, ges, dagma
+max_lag: 3
+standardize: True    # z-score every unrolled column
+instantaneous: True  # also return the lag-0 (instantaneous) channel
+base_cfg: {}         # overrides for the base method's own config/method/<base>.yaml
